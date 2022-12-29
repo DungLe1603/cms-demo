@@ -1,0 +1,22 @@
+#GET http://127.0.0.1:8080/products
+
+#POST http://127.0.0.1:8080/products/
+
+#GET http://127.0.0.1:8080/product/1
+
+PUT http://127.0.0.1:8080/product/1
+Content-Type: application/json
+{
+  "name": "MacBook pro",
+  "price": "2800"
+}
+
+#DELETE http://127.0.0.1:8080/product/1
+
+#GET http://127.0.0.1:8080/orders
+
+#POST http://127.0.0.1:8080/orders
+
+#GET http://127.0.0.1:8080/order/1
+
+#DELETE http://127.0.0.1:8080/order/1
