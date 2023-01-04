@@ -33,16 +33,16 @@ $conn = DriverManager::getConnection($connectionParams);
 $queryBuilder = $conn->createQueryBuilder();
 
 $routes = new RouteCollector(new Std(), new GroupCountBased());
-$routes->get('/products', new GetAllProducts($queryBuilder));
-$routes->get('/product/{id:\d+}', new GetProductById($queryBuilder));
-$routes->post('/products', new CreateProduct($conn));
-$routes->put('/product/{id:\d+}', new UpdateProductById($conn));
-$routes->delete('/product/{id:\d+}', new DeleteProductById($conn));
+//$routes->get('/products', new GetAllProducts($queryBuilder));
+//$routes->get('/product/{id:\d+}', new GetProductById($queryBuilder));
+//$routes->post('/products', new CreateProduct($conn));
+//$routes->put('/product/{id:\d+}', new UpdateProductById($conn));
+//$routes->delete('/product/{id:\d+}', new DeleteProductById($conn));
 
 $routes->get('/collections', new GetAllCollections($conn));
 $routes->post('/collections', new CreateCollection($conn));
-$routes->get('/collection/{id:\d+}', new GetCollectionById($conn));
-$routes->delete('/collection/{id:\d+}', new DeleteCollectionById($conn));
+$routes->get('/collections/{apiKey}', new GetCollectionById($conn));
+$routes->delete('/collections/{apiKey}', new DeleteCollectionById($conn));
 
 $server = new \React\Http\Server(new \App\Core\Router($routes));
 

@@ -22,7 +22,7 @@ class CreateCollection
         $schema = new Schema();
 
         $data = json_decode($request->getBody()->getContents(), TRUE);
-        if (!$this->conn->createSchemaManager()->tablesExist($data['displayName'])) {
+        if (!$this->conn->createSchemaManager()->tablesExist($data['apiKey'])) {
             $this->createCollectionTable($schema, $platform, $data);
             $this->addCollection($data);
             return new Response(
@@ -45,7 +45,7 @@ class CreateCollection
     }
 
     private function createCollectionTable(Schema $schema, AbstractPlatform $platform, array $data) {
-        $myTable = $schema->createTable($data["displayName"]);
+        $myTable = $schema->createTable($data["apiKey"]);
         $myTable->addColumn("id", "integer", ["unsigned" => true, 'autoincrement' => true]);
         $myTable->setPrimaryKey(["id"]);
         foreach ($data["attributes"] as $key => $attribute) {
