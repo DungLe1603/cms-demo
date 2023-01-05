@@ -47,6 +47,8 @@ class CreateCollection
     private function createCollectionTable(Schema $schema, AbstractPlatform $platform, array $data) {
         $myTable = $schema->createTable($data["apiKey"]);
         $myTable->addColumn("id", "integer", ["unsigned" => true, 'autoincrement' => true]);
+        $myTable->addColumn("created_at", "datetime");
+        $myTable->addColumn("updated_at", "datetime");
         $myTable->setPrimaryKey(["id"]);
         foreach ($data["attributes"] as $key => $attribute) {
             $myTable->addColumn($key, $attribute["type"]);

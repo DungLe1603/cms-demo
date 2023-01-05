@@ -24,6 +24,8 @@ final class Version20221229031325 extends AbstractMigration
             id INT UNSIGNED AUTO_INCREMENT NOT NULL,
             name VARCHAR (100) NOT NULL,
             api_key VARCHAR (255) NOT NULL,
+            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY(id)
         )
         SQL;

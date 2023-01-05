@@ -5,6 +5,8 @@ use App\Collections\Controller\CreateCollection;
 use App\Collections\Controller\DeleteCollectionById;
 use App\Collections\Controller\GetAllCollections;
 use App\Collections\Controller\GetCollectionById;
+use App\Collections\Controller\UpdateCollectionAttributes;
+use App\Collections\Controller\UpdateCollectionById;
 use App\Products\Controller\CreateProduct;
 use App\Products\Controller\DeleteProductById;
 use App\Products\Controller\GetAllProducts;
@@ -15,7 +17,6 @@ use Dotenv\Dotenv;
 use FastRoute\DataGenerator\GroupCountBased;
 use FastRoute\RouteCollector;
 use FastRoute\RouteParser\Std;
-
 
 $env = Dotenv::createImmutable(__DIR__);
 $env->load();
@@ -43,6 +44,8 @@ $routes->get('/collections', new GetAllCollections($conn));
 $routes->post('/collections', new CreateCollection($conn));
 $routes->get('/collections/{apiKey}', new GetCollectionById($conn));
 $routes->delete('/collections/{apiKey}', new DeleteCollectionById($conn));
+$routes->put('/collections/{apiKey}', new UpdateCollectionById($conn));
+$routes->put('/collections/{apiKey}/attributes', new UpdateCollectionAttributes($conn));
 
 $server = new \React\Http\Server(new \App\Core\Router($routes));
 
